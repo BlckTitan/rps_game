@@ -93,15 +93,17 @@ const startGame = () =>{
         roundCount = i;
         console.log(`*******************ROUND ${i}*******************`);
         playerSelection();
+        
+        if(i == 5){
+            console.log(`\n\n\TOTAL\nPLAYER: ${playerScore}\n\COMPUTER: ${computerScore}`)
+            
+            if(playerScore > computerScore){
+                console.log("PLAYER WINS")
+            }else{
+                console.log("COMPUTER WINS")
+            }
+        }
     }
-    //console.log(`\n\n\TOTAL\nPLAYER: ${playerScore}\n\COMPUTER: ${computerScore}`)
-    /**
-     * if(playerScore > computerScore){
-     *  console.log("PLAYER WINS")
-     * }else{
-     *  console.log("COMPUTER WINS")
-     * }
-     */
 }
 
 startGame();
