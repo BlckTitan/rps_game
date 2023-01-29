@@ -95,12 +95,12 @@ const startGame = () =>{
         playerSelection();
         
         if(i == 5){
-            console.log(`\n\n\TOTAL\nPLAYER: ${playerScore}\n\COMPUTER: ${computerScore}`)
+            console.log(`\n\n\TOTAL SCORE\nPLAYER: ${playerScore}\n\COMPUTER: ${computerScore}\n`)
             
             if(playerScore > computerScore){
-                console.log("PLAYER WINS")
+                console.log("PLAYER WINS!!!!!")
             }else{
-                console.log("COMPUTER WINS")
+                console.log("COMPUTER WINS!!!!!")
             }
         }
     }
