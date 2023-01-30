@@ -24,9 +24,6 @@ const playerSelection = (errorMessage = "") => {
     playerChoice = prompt(`${errorMessage}Rock, Paper, Scissors.`);
     
     validatePlayerSelection(playerChoice)
-    if (playerChoice == null) {
-        alert(1)
-    }
 }
 
 const validatePlayerSelection = (playerChoice) =>{
