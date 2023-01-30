@@ -22,21 +22,24 @@ const computerSelection = () =>{
 
 const playerSelection = (errorMessage = "") => {
     playerChoice = prompt(`${errorMessage}Rock, Paper, Scissors.`);
-
+    
     validatePlayerSelection(playerChoice)
+    if (playerChoice == null) {
+        alert(1)
+    }
 }
 
 const validatePlayerSelection = (playerChoice) =>{
 
-    if(playerChoice.toUpperCase() === "ROCK"){
+    if(playerChoice.toUpperCase().trim() === "ROCK"){
         computerSelection();
         playRound(playerChoice, computerChoice);
     }
-    else if(playerChoice.toUpperCase() === "PAPER"){
+    else if(playerChoice.toUpperCase().trim() === "PAPER"){
         computerSelection()
         playRound(playerChoice, computerChoice);
     }
-    else if(playerChoice.toUpperCase() === "SCISSORS"){
+    else if(playerChoice.toUpperCase().trim() === "SCISSORS"){
         computerSelection()
         playRound(playerChoice, computerChoice);
     }
@@ -87,6 +90,23 @@ const scoreBoard = ( playerRoundScore = 0, computerRoundScore = 0) =>{
 const displaySelection = (playerSelectonDisplay, computerSelectionDisplay) =>{
     console.log(`Player: ${playerSelectonDisplay.toUpperCase()} \n\Computer: ${computerSelectionDisplay}`)
 }
+const declareWinner = () =>{
+    console.log(`\n\n\TOTAL SCORE\nPLAYER: ${playerScore}\n\COMPUTER: ${computerScore}\n`)
+            
+    if(playerScore > computerScore){
+        console.log("PLAYER WINS!!!!!")
+    }else{
+        console.log("COMPUTER WINS!!!!!")
+    }
+}
+const newGame = () =>{
+    const startNewGame = confirm("DO YOU WANT TO TRY AGAIN??")
+    if(startNewGame == true){
+        preGameLoad()
+    }else{
+        alert("MAYBE LATER")
+    }
+}
 const startGame = () =>{
     let roundCount = 0;
     for (let i = 1; i <= 5; i++) {
@@ -95,15 +115,17 @@ const startGame = () =>{
         playerSelection();
         
         if(i == 5){
-            console.log(`\n\n\TOTAL SCORE\nPLAYER: ${playerScore}\n\COMPUTER: ${computerScore}\n`)
-            
-            if(playerScore > computerScore){
-                console.log("PLAYER WINS!!!!!")
-            }else{
-                console.log("COMPUTER WINS!!!!!")
-            }
+            declareWinner()
+            newGame()
         }
     }
 }
-
-startGame();
+const preGameLoad = () =>{
+    const loader = confirm("WELCOME TO THE ROCK, PAPER, SCISSORS GAME\n\ACCEPT TO BEGIN");
+    if(loader == true){
+        startGame();
+    }else{
+        return alert("MAYBE NEXT TIME.")
+    }
+}
+preGameLoad();
