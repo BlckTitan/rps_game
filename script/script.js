@@ -22,52 +22,48 @@ const computerSelection = () =>{
 
 const playerSelection = (errorMessage = "") => {
     playerChoice = prompt(`${errorMessage}Rock, Paper, Scissors.`);
+    playerChoice = playerChoice.toLocaleUpperCase().trim()
     
-    validatePlayerSelection(playerChoice)
-}
-
-const validatePlayerSelection = (playerChoice) =>{
-
-    if(playerChoice.toUpperCase().trim() === "ROCK"){
+    if(playerChoice === "ROCK"){
         computerSelection();
         playRound(playerChoice, computerChoice);
     }
-    else if(playerChoice.toUpperCase().trim() === "PAPER"){
+    else if(playerChoice === "PAPER"){
         computerSelection()
         playRound(playerChoice, computerChoice);
     }
-    else if(playerChoice.toUpperCase().trim() === "SCISSORS"){
+    else if(playerChoice === "SCISSORS"){
         computerSelection()
         playRound(playerChoice, computerChoice);
     }
     else{
         playerChoice = playerSelection("INVALID SELECTION!!!\n")
     }
-
 }
+
 const playRound = (playerChoice, computerChoice) =>{
     
-    if (playerChoice.toUpperCase() === "SCISSORS" && computerChoice === "PAPER") {
+    if (playerChoice === "SCISSORS" && computerChoice === "PAPER") {
         displaySelection(playerChoice, computerChoice)
         console.log("You win")
         scoreBoard(1, 0)
-    } else if(playerChoice.toUpperCase() === "ROCK" && computerChoice === "SCISSORS") {
+    } else if(playerChoice === "ROCK" && computerChoice === "SCISSORS") {
         displaySelection(playerChoice, computerChoice)
         console.log("You win")
         scoreBoard(1, 0)
-    } else if (playerChoice.toUpperCase() === "PAPER" && computerChoice === "ROCK") {
+    } else if (playerChoice === "PAPER" && computerChoice === "ROCK") {
         displaySelection(playerChoice, computerChoice)
         console.log("You win")
         scoreBoard(1, 0)
-    } else if(playerChoice.toUpperCase() === "ROCK" && computerChoice === "ROCK") {
+    } else if(playerChoice === "ROCK" && computerChoice === "ROCK") {
         displaySelection(playerChoice, computerChoice)
         console.log("It's a tie")
         scoreBoard(0, 0)
-    } else if(playerChoice.toUpperCase() === "PAPER" && computerChoice === "PAPER") {
+    } else if(playerChoice === "PAPER" && computerChoice === "PAPER") {
         displaySelection(playerChoice, computerChoice)
         console.log("It's a tie")
         scoreBoard(0, 0)
-    } else if(playerChoice.toUpperCase() === "SCISSORS" && computerChoice === "SCISSORS") {
+    } else if(playerChoice === "SCISSORS" && computerChoice === "SCISSORS") {
         displaySelection(playerChoice, computerChoice)
         console.log("It's a tie")
         scoreBoard(0, 0)
@@ -85,7 +81,7 @@ const scoreBoard = ( playerRoundScore = 0, computerRoundScore = 0) =>{
 }
 
 const displaySelection = (playerSelectonDisplay, computerSelectionDisplay) =>{
-    console.log(`Player: ${playerSelectonDisplay.toUpperCase()} \n\Computer: ${computerSelectionDisplay}`)
+    console.log(`Player: ${playerSelectonDisplay} \n\Computer: ${computerSelectionDisplay}`)
 }
 const declareWinner = () =>{
     console.log(`\n\n\TOTAL SCORE\nPLAYER: ${playerScore}\n\COMPUTER: ${computerScore}\n`)
@@ -125,4 +121,4 @@ const preGameLoad = () =>{
         return alert("MAYBE NEXT TIME.")
     }
 }
-preGameLoad();
+//preGameLoad();
