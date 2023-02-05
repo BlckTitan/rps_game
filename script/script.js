@@ -3,7 +3,15 @@ let playerChoice;
 let winner;
 let playerScore = 0;
 let computerScore = 0;
+let rockBtn = document.querySelector('.userRock');
+let paperBtn = document.querySelector('.userPaper');
+let scissorsBtn = document.querySelector('.userScissors');
 
+const getUserSelection = () =>{
+    rockBtn.addEventListener('click', ()=>playerChoice = 'ROCK')
+    paperBtn.addEventListener('click', ()=>playerChoice = 'PAPER')
+    scissorsBtn.addEventListener('click', ()=>playerChoice = 'SCISSORS')
+}
 const computerSelection = () =>{
     const randomSelection = Math.floor(Math.random() * 3) + 1;
 
@@ -21,8 +29,7 @@ const computerSelection = () =>{
 }
 
 const playerSelection = (errorMessage = "") => {
-    playerChoice = prompt(`${errorMessage}Rock, Paper, Scissors.`);
-    playerChoice = playerChoice.toLocaleUpperCase().trim()
+    getUserSelection()
     
     if(playerChoice === "ROCK"){
         computerSelection();
@@ -37,7 +44,7 @@ const playerSelection = (errorMessage = "") => {
         playRound(playerChoice, computerChoice);
     }
     else{
-        playerChoice = playerSelection("INVALID SELECTION!!!\n")
+        return false;
     }
 }
 

@@ -20,7 +20,7 @@ header{
 }
 main > section.stage{
     width: 100%;
-    height: calc(100vh - 520px);
+    height: calc(100vh - 600px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,9 +41,18 @@ main > section.options{
     width: 100%;
     height: 260px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main > section.options > h2{
+    color: #302D2D;    
+    margin: 2rem 0;
+}
+main > section.options > div{
+    display: flex;
     justify-content: center;
 }
-main > section.options > figure{
+main > section.options > div > figure{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,15 +61,15 @@ main > section.options > figure{
     background-color:#302D2D;
     margin: 0 2rem;
 }
-main > section.options > figure:hover{
+main > section.options > div > figure:hover{
     transform: scale(0.9);
 }
-main > section.options > figure > img{
+main > section.options > div > figure > img{
     width: 200px;
     height: 200px;
     object-fit: cover;
 }
-main > section.options > figure > figcaption{
+main > section.options > div > figure > figcaption{
     font-size: 24px;
     font-weight: 600;
     color: #e8e8e8;
