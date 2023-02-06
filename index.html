@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <script src="./script/script.js" defer></script>
+    <script src="./script/store.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link 
@@ -16,9 +17,18 @@
 </head>
 <body>
     <header>
-        <div>ROUND</div>
-        <div>MESSAGE</div>
-        <div>score</div>
+        <div class="title">
+            <span>ROCK</span>
+            <span>PAPER</span>
+            <span>SCISSORS</span>
+        </div>
+        <div class="announcement">
+            <div class="roundDisplay">NEW GAME</div>
+            <div class="scoreDisplay">score</div>
+            <div class="messageDisplay"></div>
+        </div>
+        <div class="miscellaneous"></div>
+        
     </header>
     <main>
         <section class="stage">
@@ -40,7 +50,7 @@
             </figure>
         </section>
         <section class="options">
-            <h2>MAKE A CHOICE</h2>
+            <h2 class="playerSelectionHeader">MAKE A CHOICE TO BEGIN</h2>
             <div>
                 <figure class="userRock">
                     <img src="./img/rock-removebg-preview.png" alt="image of a clinched fist representing rock">

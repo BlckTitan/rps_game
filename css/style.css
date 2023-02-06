@@ -12,11 +12,49 @@ body{
 header{
     width: 100%;
     height: 200px;
-    background-color: red;
+    background-color: #302D2D;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
+    text-align: center;
+}
+
+header > div{
+    color: #e8e8e8;
+}
+header > div.title,
+header > div.miscellaneous{
+    width: 10%;
+    height: 100%;
+}
+header > div.title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+header > div.title > span{
+    font-weight: 800;
+}
+header > div.announcement{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+header > div.announcement > div.roundDisplay{
+    font-size: 40px;
+    font-weight: 600;
+}
+header > div.announcement > div.scoreDisplay{
+    font-size: 24px;
+}
+header > div.announcement > div.messageDisplay{
+    font-size: 24px;
+    font-weight: 600;
 }
 main > section.stage{
     width: 100%;
@@ -28,25 +66,34 @@ main > section.stage{
 main > section.stage > figure{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     width: 450px;
-    height: 260px;
+    height: 300px;
     margin: 0 4rem;
+}
+main > section.stage > figure > img{
+    width: 200px;
+    max-height: 200px;
+    object-fit: cover;
 }
 main > section.stage > figure > figcaption{
     color: #302D2D;
     font-weight: 600;
+    width: 100%;
+    height: 3rem;
+    text-align: center;
 }
 main > section.options{
     width: 100%;
-    height: 260px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 main > section.options > h2{
     color: #302D2D;    
-    margin: 2rem 0;
+    margin: 0.8rem 0;
 }
 main > section.options > div{
     display: flex;
