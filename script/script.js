@@ -7,8 +7,10 @@ let caption;
 let alt;
 let winner;
 let messageDisplay = document.querySelector('.messageDisplay');
+let playerSelectionHeader = document.querySelector('.playerSelectionHeader');
 let playerScore = 0;
 let computerScore = 0;
+let roundCount = 0;
 
 const getUserSelection = () =>{    
     let rockBtn = document.querySelector('.userRock');
@@ -19,7 +21,6 @@ const getUserSelection = () =>{
     scissorsBtn.addEventListener('click', ()=>{playerChoice = 'SCISSORS', playerSelection(), hideDefaults()})
 }
 const hideDefaults = () =>{
-    let playerSelectionHeader = document.querySelector('.playerSelectionHeader');
     playerSelectionHeader.style.visibility = 'hidden';
 }
 /*const mapImgAndCaption = () =>{
@@ -71,12 +72,26 @@ const playerSelection = (errorMessage = "") => {
         return false;
     }
 }
-
+const resetGame = () =>{
+    messageDisplay.innerHTML =  messageDisplay.innerHTML = `GAME OVER`;
+    playerSelectionHeader.style.visibility = 'visible';
+    //declareWinner()
+    //newGame()
+}
+const trackRoundIteration= () =>{
+    let roundDisplay = document.querySelector('.roundDisplay');
+    roundCount = roundCount+1;
+    roundDisplay.innerHTML = `ROUND ${roundCount}`;
+    if(roundCount == 5){
+        resetGame()
+    }
+}
 const playRound = (playerChoice, computerChoice) =>{
-    
+    trackRoundIteration()
     if (playerChoice === "SCISSORS" && computerChoice === "PAPER") {
         displaySelection(playerChoice, computerChoice)
         messageDisplay.innerHTML = "You win"
+        roundCount = roundCount + 1;
         scoreBoard(1, 0)
     } else if(playerChoice === "ROCK" && computerChoice === "SCISSORS") {
         displaySelection(playerChoice, computerChoice)
@@ -111,7 +126,6 @@ const scoreBoard = ( playerRoundScore = 0, computerRoundScore = 0) =>{
     computerScore = computerScore + computerRoundScore;
     scoreBoard.innerHTML = `Player | ${playerScore} - ${computerScore} | Computer`
 }
-
 const displaySelection = (playerSelectonDisplay, computerSelectionDisplay) =>{
     let computerChoiceCaption = document.querySelector('.stageComputerCaption');
     let playerChoiceCaption =  document.querySelector('.stagePlayerCaption');
@@ -139,20 +153,9 @@ const displaySelection = (playerSelectonDisplay, computerSelectionDisplay) =>{
         messageDisplay.innerHTML = "MAYBE LATER";
     }
 }*/
-/*const startGame = () =>{
-    let roundDisplay = document.querySelector('.roundDisplay');
-    let roundCount = 0;
-    for (let i = 1; i <= 5; i++) {
-        roundCount = i;
-        roundDisplay.innerHTML = `ROUND ${i}`
-        playerSelection();
-        
-        if(i == 5){
-            declareWinner()
-            //newGame()
-        }
-    }
-}*/
+const startGame = () =>{
+    getUserSelection();
+}
 /*const preGameLoad = () =>{
     const loader = confirm("WELCOME TO THE ROCK, PAPER, SCISSORS GAME\n\ACCEPT TO BEGIN");
     if(loader == true){
@@ -161,6 +164,5 @@ const displaySelection = (playerSelectonDisplay, computerSelectionDisplay) =>{
         return alert("MAYBE NEXT TIME.")
     }
 }*/
-//startGame();
+startGame();
 //preGameLoad();
-getUserSelection()

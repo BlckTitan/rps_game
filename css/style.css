@@ -62,8 +62,46 @@ main > section.stage{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
-main > section.stage > figure{
+main > section.stage > div.preGameInfo,
+main > section.stage > div.postGameInfo{
+    background-color: #302D2D;
+    color: #e8e8e8;
+    width: 65%;
+    height: 90%;
+    position: absolute;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+main > section.stage > div.preGameInfo > p{
+    text-align: center;
+    font-size: 24px;
+}
+main > section.stage > div.preGameInfo > button{
+    width: 12rem;
+    height: 4rem;
+    border: none;
+    border-radius: 0.3rem;
+    color: #302D2D;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #FFEB00;
+}
+main > section.stage > div.preGameInfo > button:hover{
+    background-color: #dbca07;
+}
+main > section.stage > div.game{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main > section.stage > div.game > figure{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -72,12 +110,12 @@ main > section.stage > figure{
     height: 300px;
     margin: 0 4rem;
 }
-main > section.stage > figure > img{
+main > section.stage > div.game > figure > img{
     width: 200px;
     max-height: 200px;
     object-fit: cover;
 }
-main > section.stage > figure > figcaption{
+main > section.stage > div.game > figure > figcaption{
     color: #302D2D;
     font-weight: 600;
     width: 100%;
