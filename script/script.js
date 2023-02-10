@@ -7,10 +7,14 @@ let caption;
 let alt;
 let winner;
 let messageDisplay = document.querySelector('.messageDisplay');
+let postGameMessageDisplay = document.querySelector('.postGameMessageDisplay');
 let playerSelectionHeader = document.querySelector('.playerSelectionHeader');
+let preGameInfo = document.querySelector('.preGameInfo')
+let postGameInfo = document.querySelector('.postGameInfo');
 let playerScore = 0;
 let computerScore = 0;
 let roundCount = 0;
+let loader = null;
 
 const getUserSelection = () =>{    
     let rockBtn = document.querySelector('.userRock');
@@ -22,6 +26,8 @@ const getUserSelection = () =>{
 }
 const hideDefaults = () =>{
     playerSelectionHeader.style.visibility = 'hidden';
+    preGameInfo.style.visibility = 'hidden';
+    postGameInfo.style.visibility = 'hidden';
 }
 /*const mapImgAndCaption = () =>{
     visualStore.map(data => 
@@ -133,36 +139,42 @@ const displaySelection = (playerSelectonDisplay, computerSelectionDisplay) =>{
     playerChoiceCaption.innerHTML = `YOU CHOSE ${playerSelectonDisplay}`;
     computerChoiceCaption.innerHTML = `COMPUTER CHOSE ${computerSelectionDisplay}`;
 }
-/*const declareWinner = () =>{
-    console.log(`\n\n\TOTAL SCORE\nPLAYER: ${playerScore}\n\COMPUTER: ${computerScore}\n`)
+const declareWinner = () =>{
+    let postGameHeader = document.querySelector('.postGameHeader');
+    postGameMessageDisplay.innerHTML = `TOTAL SCORE\nPLAYER | ${playerScore} - ${computerScore} | COMPUTER`;
             
     if(playerScore > computerScore){
-        messageDisplay.innerHTML = "PLAYER WINS!!!!!";
+        postGameHeader.innerHTML = "PLAYER WINS!!!!!";
     }else{
-        messageDisplay.innerHTML = "COMPUTER WINS!!!!!"
+        postGameHeader.innerHTML = "COMPUTER WINS!!!!!"
     }
+
+    setTimeout(()=>{
+        newGame()
+    }, 60000)
 }
-*/
-/*const newGame = () =>{
-    messageDisplay = document.querySelector('.messageDisplay');
-    messageDisplay.innerHTML = "DO YOU WANT TO TRY AGAIN??";
-    //const startNewGame = confirm("DO YOU WANT TO TRY AGAIN??")
-    if(startNewGame == true){
-        preGameLoad()
-    }else{
-        messageDisplay.innerHTML = "MAYBE LATER";
-    }
-}*/
+const newGame = () =>{
+    let playAgainBtn = document.querySelector('.playAgain');
+    let postGameMessageDisplay = document.querySelector('.postGameMessageDisplay');
+    playAgainBtn.addEventListener('click', ()=>preGameLoad())
+    postGameMessageDisplay.innerHTML = "DO YOU WANT TO TRY AGAIN??";
+}
 const startGame = () =>{
     getUserSelection();
 }
-/*const preGameLoad = () =>{
-    const loader = confirm("WELCOME TO THE ROCK, PAPER, SCISSORS GAME\n\ACCEPT TO BEGIN");
-    if(loader == true){
-        startGame();
-    }else{
-        return alert("MAYBE NEXT TIME.")
-    }
-}*/
-startGame();
-//preGameLoad();
+const preGameLoad = () =>{
+
+    let btnAccept = document.querySelector('.accept');
+    let btnDecline = document.querySelector('.decline');
+
+    preGameInfo.style.visibility = 'visible';
+    postGameInfo.style.visibility = 'hidden';
+    
+    btnAccept.addEventListener('click', ()=>{hideDefaults(), startGame()});
+    btnDecline.addEventListener('click', ()=>{
+        preGameInfo.style.visibility = 'hidden';
+        postGameInfo.style.visibility = 'visible';
+        newGame()
+    });
+}
+preGameLoad();

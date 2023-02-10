@@ -81,18 +81,30 @@ main > section.stage > div.preGameInfo > p{
     text-align: center;
     font-size: 24px;
 }
-main > section.stage > div.preGameInfo > button{
+main > section.stage > div.preGameInfo > div > button,
+main > section.stage > div.postGameInfo > button{
     width: 12rem;
     height: 4rem;
     border: none;
     border-radius: 0.3rem;
-    color: #302D2D;
     font-size: 18px;
     font-weight: bold;
-    background-color: #FFEB00;
+    margin: 0 0.5rem
+}
+main > section.stage > div.preGameInfo > div > button.accept,
+main > section.stage > div.postGameInfo > button{
+    box-shadow:inset -1px -49px 0px 1px #d6c400;
+    color: #302D2D;
+    background:linear-gradient(to bottom, #FFEB00 5%, #FFEB00 100%);
+}
+main > section.stage > div.preGameInfo > div > button.decline{
+    color: #e8e8e8;
+    box-shadow:inset -1px -49px 0px 1px gray;
+    background:linear-gradient(to bottom, rgb(148, 147, 147) 5%, gray 100%);
+
 }
 main > section.stage > div.preGameInfo > button:hover{
-    background-color: #dbca07;
+    transform: scale(0.9);
 }
 main > section.stage > div.game{
     width: 100%;
