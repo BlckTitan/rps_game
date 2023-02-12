@@ -1,12 +1,11 @@
-//import  {visualStore}  from './store';
-
 let computerChoice;
 let playerChoice;
 let messageDisplay = document.querySelector('.messageDisplay');
 let postGameMessageDisplay = document.querySelector('.postGameMessageDisplay');
 let playerSelectionHeader = document.querySelector('.playerSelectionHeader');
 let scoreBoardDisplay = document.querySelector('.scoreDisplay');
-let preGameInfo = document.querySelector('.preGameInfo')
+let preGameInfo = document.querySelector('.preGameInfo');
+let game = document.querySelector('.game');
 let postGameInfo = document.querySelector('.postGameInfo');
 let playAgainBtn = document.querySelector('.playAgain');
 let playerScore = 0;
@@ -14,6 +13,12 @@ let computerScore = 0;
 let roundCount = 0;
 let loader = null;
 
+const displayModalAndBtn = (modalBtn) =>{
+    modalBtn.style.visibility = 'visible';
+}
+const disappearModalAndBtn = (modalBtn) =>{
+    modalBtn.style.visibility = 'hidden';
+}
 const getUserSelection = () =>{    
     let rockBtn = document.querySelector('.userRock');
     let paperBtn = document.querySelector('.userPaper');
@@ -23,9 +28,8 @@ const getUserSelection = () =>{
     scissorsBtn.addEventListener('click', ()=>{playerChoice = 'SCISSORS', trackRoundIteration()})
 }
 const hideDefaults = () =>{
-    playerSelectionHeader.style.visibility = 'hidden';
-    preGameInfo.style.visibility = 'hidden';
-    postGameInfo.style.visibility = 'hidden';
+    disappearModalAndBtn(preGameInfo);
+    disappearModalAndBtn(postGameInfo);
 }
 const computerSelection = () =>{
     const randomSelection = Math.floor(Math.random() * 3) + 1;
@@ -70,13 +74,15 @@ const playerSelection = () => {
 }
 const trackRoundIteration = () =>{
     let roundDisplay = document.querySelector('.roundDisplay');
+    displayModalAndBtn(game)
+    disappearModalAndBtn(playerSelectionHeader)
     roundCount = roundCount+1
     if(roundCount <= 5){
         (roundCount == 0) ? roundDisplay.innerHTML = 'ROUND' : roundDisplay.innerHTML = `ROUND ${roundCount}`;
         playerSelection()
     }else{
-        scoreBoardDisplay.style.visibility = 'hidden';
-        postGameInfo.style.visibility = 'visible';
+        disappearModalAndBtn(scoreBoardDisplay)
+        displayModalAndBtn(postGameInfo)
         declareWinner()
     }
 }
@@ -125,11 +131,10 @@ const displaySelection = (playerSelectonDisplay, computerSelectionDisplay) =>{
     computerChoiceCaption.innerHTML = `COMPUTER CHOSE ${computerSelectionDisplay}`;
 }
 const declareWinner = () =>{
-    let game = document.querySelector('.game');
     let postGameHeader = document.querySelector('.postGameHeader');
-    game.style.visibility = 'hidden';
+    disappearModalAndBtn(game)
     postGameMessageDisplay.innerHTML = `TOTAL SCORE <br/> PLAYER | ${playerScore} - ${computerScore} | COMPUTER`;
-    playAgainBtn.style.visibility = 'hidden';
+    disappearModalAndBtn(playAgainBtn)
     messageDisplay.innerHTML =  messageDisplay.innerHTML = `GAME OVER`;
 
     if(playerScore > computerScore){
@@ -150,25 +155,25 @@ const resetGame = () =>{
 const newGame = () =>{
     playAgainBtn.addEventListener('click', ()=>resetGame())
     postGameMessageDisplay.innerHTML = "DO YOU WANT TO TRY AGAIN??";
-    playAgainBtn.style.visibility = 'visible';
+    displayModalAndBtn(playAgainBtn)
     scoreBoard(0,0)
 }
 const startGame = () =>{
     getUserSelection();
 }
 const preGameLoad = () =>{
-
     let btnAccept = document.querySelector('.accept');
     let btnDecline = document.querySelector('.decline');
 
-    preGameInfo.style.visibility = 'visible';
-    postGameInfo.style.visibility = 'hidden';
-    playAgainBtn.style.visibility = 'hidden';
-    
+    displayModalAndBtn(preGameInfo)
+    disappearModalAndBtn(postGameInfo)
+    disappearModalAndBtn(playAgainBtn)
+    disappearModalAndBtn(game)
+
     btnAccept.addEventListener('click', ()=>{hideDefaults(), startGame()});
     btnDecline.addEventListener('click', ()=>{
-        preGameInfo.style.visibility = 'hidden';
-        postGameInfo.style.visibility = 'visible';
+        disappearModalAndBtn(preGameInfo)
+        displayModalAndBtn(postGameInfo)
         newGame()
     });
 }
