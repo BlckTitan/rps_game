@@ -77,11 +77,8 @@ const trackRoundIteration = () =>{
     }else{
         scoreBoardDisplay.style.visibility = 'hidden';
         postGameInfo.style.visibility = 'visible';
-        resetGame()
+        declareWinner()
     }
-}
-const resetGame = () =>{
-    declareWinner()
 }
 const playRound = (playerChoice, computerChoice) =>{
     if (playerChoice === "SCISSORS" && computerChoice === "PAPER") {
@@ -147,18 +144,13 @@ const declareWinner = () =>{
         newGame()
     }, 6000)
 }
+const resetGame = () =>{
+    window.location.reload()
+}
 const newGame = () =>{
-    let postGameMessageDisplay = document.querySelector('.postGameMessageDisplay');
-    playAgainBtn.addEventListener('click', ()=>startGame())
+    playAgainBtn.addEventListener('click', ()=>resetGame())
     postGameMessageDisplay.innerHTML = "DO YOU WANT TO TRY AGAIN??";
     playAgainBtn.style.visibility = 'visible';
-    scoreBoardDisplay.style.visibility = 'visible';
-    playerChoice = '';
-    computerChoice = '';
-    playerScore = 0;
-    computerScore = 0;
-    roundCount = 0
-    messageDisplay.innerHTML =  messageDisplay.innerHTML = '';
     scoreBoard(0,0)
 }
 const startGame = () =>{
