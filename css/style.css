@@ -77,7 +77,8 @@ main > section.stage > div.postGameInfo{
     align-items: center;
     justify-content: space-between;
 }
-main > section.stage > div.preGameInfo > p{
+main > section.stage > div.preGameInfo > p,
+main > section.stage > div.postGameInfo > p{
     text-align: center;
     font-size: 24px;
 }

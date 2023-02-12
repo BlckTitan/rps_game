@@ -2,15 +2,13 @@
 
 let computerChoice;
 let playerChoice;
-let img;
-let caption;
-let alt;
-let winner;
 let messageDisplay = document.querySelector('.messageDisplay');
 let postGameMessageDisplay = document.querySelector('.postGameMessageDisplay');
 let playerSelectionHeader = document.querySelector('.playerSelectionHeader');
+let scoreBoardDisplay = document.querySelector('.scoreDisplay');
 let preGameInfo = document.querySelector('.preGameInfo')
 let postGameInfo = document.querySelector('.postGameInfo');
+let playAgainBtn = document.querySelector('.playAgain');
 let playerScore = 0;
 let computerScore = 0;
 let roundCount = 0;
@@ -20,22 +18,15 @@ const getUserSelection = () =>{
     let rockBtn = document.querySelector('.userRock');
     let paperBtn = document.querySelector('.userPaper');
     let scissorsBtn = document.querySelector('.userScissors');
-    rockBtn.addEventListener('click', ()=>{playerChoice = 'ROCK', playerSelection(), hideDefaults()})
-    paperBtn.addEventListener('click', ()=>{playerChoice = 'PAPER', playerSelection(), hideDefaults()})
-    scissorsBtn.addEventListener('click', ()=>{playerChoice = 'SCISSORS', playerSelection(), hideDefaults()})
+    rockBtn.addEventListener('click', ()=>{playerChoice = 'ROCK', trackRoundIteration()})
+    paperBtn.addEventListener('click', ()=>{playerChoice = 'PAPER', trackRoundIteration()})
+    scissorsBtn.addEventListener('click', ()=>{playerChoice = 'SCISSORS', trackRoundIteration()})
 }
 const hideDefaults = () =>{
     playerSelectionHeader.style.visibility = 'hidden';
     preGameInfo.style.visibility = 'hidden';
     postGameInfo.style.visibility = 'hidden';
 }
-/*const mapImgAndCaption = () =>{
-    visualStore.map(data => 
-        img = data.link,
-        caption = data.title,
-        alt = data.alt
-    )
-}*/
 const computerSelection = () =>{
     const randomSelection = Math.floor(Math.random() * 3) + 1;
     let computerChoiceImg = document.querySelector('.stageComputerImage');
@@ -56,8 +47,7 @@ const computerSelection = () =>{
     }
 }
 
-const playerSelection = (errorMessage = "") => {
-    
+const playerSelection = () => {
     let playerChoiceImg =  document.querySelector('.stagePlayerImage');
     if(playerChoice === "ROCK"){
         playerChoiceImg.src = './img/rock-removebg-preview.png'
@@ -78,26 +68,25 @@ const playerSelection = (errorMessage = "") => {
         return false;
     }
 }
-const resetGame = () =>{
-    messageDisplay.innerHTML =  messageDisplay.innerHTML = `GAME OVER`;
-    playerSelectionHeader.style.visibility = 'visible';
-    //declareWinner()
-    //newGame()
-}
-const trackRoundIteration= () =>{
+const trackRoundIteration = () =>{
     let roundDisplay = document.querySelector('.roundDisplay');
-    roundCount = roundCount+1;
-    roundDisplay.innerHTML = `ROUND ${roundCount}`;
-    if(roundCount == 5){
+    roundCount = roundCount+1
+    if(roundCount <= 5){
+        (roundCount == 0) ? roundDisplay.innerHTML = 'ROUND' : roundDisplay.innerHTML = `ROUND ${roundCount}`;
+        playerSelection()
+    }else{
+        scoreBoardDisplay.style.visibility = 'hidden';
+        postGameInfo.style.visibility = 'visible';
         resetGame()
     }
 }
+const resetGame = () =>{
+    declareWinner()
+}
 const playRound = (playerChoice, computerChoice) =>{
-    trackRoundIteration()
     if (playerChoice === "SCISSORS" && computerChoice === "PAPER") {
         displaySelection(playerChoice, computerChoice)
         messageDisplay.innerHTML = "You win"
-        roundCount = roundCount + 1;
         scoreBoard(1, 0)
     } else if(playerChoice === "ROCK" && computerChoice === "SCISSORS") {
         displaySelection(playerChoice, computerChoice)
@@ -127,10 +116,9 @@ const playRound = (playerChoice, computerChoice) =>{
     }
 }
 const scoreBoard = ( playerRoundScore = 0, computerRoundScore = 0) =>{
-    let scoreBoard = document.querySelector('.scoreDisplay');
     playerScore = playerScore + playerRoundScore;
     computerScore = computerScore + computerRoundScore;
-    scoreBoard.innerHTML = `Player | ${playerScore} - ${computerScore} | Computer`
+    scoreBoardDisplay.innerHTML = `Player | ${playerScore} - ${computerScore} | Computer`;
 }
 const displaySelection = (playerSelectonDisplay, computerSelectionDisplay) =>{
     let computerChoiceCaption = document.querySelector('.stageComputerCaption');
@@ -140,24 +128,38 @@ const displaySelection = (playerSelectonDisplay, computerSelectionDisplay) =>{
     computerChoiceCaption.innerHTML = `COMPUTER CHOSE ${computerSelectionDisplay}`;
 }
 const declareWinner = () =>{
+    let game = document.querySelector('.game');
     let postGameHeader = document.querySelector('.postGameHeader');
-    postGameMessageDisplay.innerHTML = `TOTAL SCORE\nPLAYER | ${playerScore} - ${computerScore} | COMPUTER`;
-            
+    game.style.visibility = 'hidden';
+    postGameMessageDisplay.innerHTML = `TOTAL SCORE <br/> PLAYER | ${playerScore} - ${computerScore} | COMPUTER`;
+    playAgainBtn.style.visibility = 'hidden';
+    messageDisplay.innerHTML =  messageDisplay.innerHTML = `GAME OVER`;
+
     if(playerScore > computerScore){
         postGameHeader.innerHTML = "PLAYER WINS!!!!!";
+    }else if(playerScore < computerScore){
+        postGameHeader.innerHTML = "COMPUTER WINS!!!!!";
     }else{
-        postGameHeader.innerHTML = "COMPUTER WINS!!!!!"
+        postGameHeader.innerHTML = "IT'S A TIE!!!!!";
     }
 
     setTimeout(()=>{
         newGame()
-    }, 60000)
+    }, 6000)
 }
 const newGame = () =>{
-    let playAgainBtn = document.querySelector('.playAgain');
     let postGameMessageDisplay = document.querySelector('.postGameMessageDisplay');
-    playAgainBtn.addEventListener('click', ()=>preGameLoad())
+    playAgainBtn.addEventListener('click', ()=>startGame())
     postGameMessageDisplay.innerHTML = "DO YOU WANT TO TRY AGAIN??";
+    playAgainBtn.style.visibility = 'visible';
+    scoreBoardDisplay.style.visibility = 'visible';
+    playerChoice = '';
+    computerChoice = '';
+    playerScore = 0;
+    computerScore = 0;
+    roundCount = 0
+    messageDisplay.innerHTML =  messageDisplay.innerHTML = '';
+    scoreBoard(0,0)
 }
 const startGame = () =>{
     getUserSelection();
@@ -169,6 +171,7 @@ const preGameLoad = () =>{
 
     preGameInfo.style.visibility = 'visible';
     postGameInfo.style.visibility = 'hidden';
+    playAgainBtn.style.visibility = 'hidden';
     
     btnAccept.addEventListener('click', ()=>{hideDefaults(), startGame()});
     btnDecline.addEventListener('click', ()=>{
