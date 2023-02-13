@@ -1,0 +1,148 @@
+@import url('./style.css');
+@media screen and (max-width: 540px) {
+    header{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+    }
+    header > div.title{
+        width: 10%;
+        height: 100%;
+    }
+    header > div.miscellaneous{
+        display: hidden;
+    }
+    header > div.title > span{
+        font-size: 12px;
+        font-weight: 600;
+    }
+    header > div.announcement > div.roundDisplay{
+        font-size: 20px;
+        font-weight: 600;
+    }
+    header > div.announcement > div.scoreDisplay{
+        font-size: 16px;
+    }
+    header > div.announcement > div.messageDisplay{
+        font-size: 16px;
+        font-weight: 600;
+    }
+    main > section.stage > div.preGameInfo,
+    main > section.stage > div.postGameInfo{
+        text-align: center;
+        background-color: #302D2D;
+        color: #e8e8e8;
+        width: 95%;
+        height: 220px;
+        position: absolute;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    main > section.stage > div.preGameInfo > h1, 
+    main > section.stage > div.postGameInfo > h1
+    main > section.stage > div.preGameInfo > h3, 
+    main > section.stage > div.postGameInfo > h3{
+        font-size: 18px;
+    }
+    main > section.stage > div.preGameInfo > p,
+    main > section.stage > div.postGameInfo > p{
+        text-align: center;
+        font-size: 16px;
+    }
+    main > section.stage > div.preGameInfo > div > button,
+    main > section.stage > div.postGameInfo > button{
+        width: 6rem;
+        height: 2rem;
+        border: none;
+        border-radius: 0.3rem;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0 0.5rem
+    }
+    main > section.stage > div.preGameInfo > div > button.accept,
+    main > section.stage > div.postGameInfo > button{
+        box-shadow:inset -1px -49px 0px 1px #d6c400;
+        color: #302D2D;
+        background:linear-gradient(to bottom, #FFEB00 5%, #FFEB00 100%);
+    }
+    main > section.stage > div.preGameInfo > div > button.decline{
+        color: #e8e8e8;
+        box-shadow:inset -1px -49px 0px 1px gray;
+        background:linear-gradient(to bottom, rgb(148, 147, 147) 5%, gray 100%);
+    
+    }
+    main > section.stage > div.preGameInfo > button:hover{
+        transform: scale(0.9);
+    }
+    main > section.stage > div.game{
+        width: 100%;
+        height: 220px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    main > section.stage > div.game > figure{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 125px;
+        height: 100px;
+        margin: 0 4rem;
+    }
+    main > section.stage > div.game > figure > img{
+        width: 120px;
+        max-height: 100px;
+        object-fit: cover;
+    }
+    main > section.stage > div.game > figure > figcaption{
+        color: #302D2D;
+        font-weight: 600;
+        font-size: 12px;
+        width: 100%;
+        height: 3rem;
+        text-align: center;
+    }
+    main > section.options{
+        width: 100%;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    main > section.options > h2{
+        font-size: 18px;
+    }
+    main > section.options > div{
+        display: flex;
+        justify-content: center;
+    }
+    main > section.options > div > figure{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 115px;
+        height: 120px;
+        background-color:#302D2D;
+        margin: 0 0.5rem;
+    }
+    main > section.options > div > figure:hover{
+        transform: scale(0.9);
+    }
+    main > section.options > div > figure > img{
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+    main > section.options > div > figure > figcaption{
+        font-size: 14px;
+        font-weight: 600;
+        height: 1.5rem;
+    }
+}
